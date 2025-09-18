@@ -34,7 +34,7 @@ jobs:
       - name: Set up Kubeconfig
         uses: azure/k8s-actions/aks-set-context@master
         with:
-          kubeconfig: ${{ secrets.KUBECONFIG }}
+          creds: ${{ secrets.KUBECONFIG }}
 
       - name: Deploy to Kubernetes
         run: |
