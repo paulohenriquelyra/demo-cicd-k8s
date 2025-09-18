@@ -31,10 +31,11 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
 
-      - name: Set up Kubeconfig
-        uses: azure/k8s-set-context@v3
-        with:
-          kubeconfig: ${{ secrets.KUBECONFIG }} # <-- Usando a nova action e o parâmetro correto
+      - name: Set up kubectl
+        run: |
+          mkdir -p ~/.kube
+          echo "${{ secrets.KUBECONFIG }}" | base64 -d > ~/.kube/config
+          chmod 600 ~/.kube/config
 
       - name: Deploy to Kubernetes
         run: |
