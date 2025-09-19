@@ -1,13 +1,14 @@
-_template_: | 
- apiVersion: v1
- kind: Service
- metadata:
- name: demo-app-service
- spec:
- selector:
- app: demo-app
- ports:
- - protocol: TCP
- port: 80
- targetPort: 8080
- type: NodePort
+apiVersion: v1
+kind: Service
+metadata:
+  name: demo-app-service
+  labels:
+    app: demo-app
+spec:
+  type: NodePort
+  ports:
+    - port: 80
+      targetPort: 5000
+      nodePort: 30080
+  selector:
+    app: demo-app
